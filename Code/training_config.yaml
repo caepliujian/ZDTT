@@ -1,0 +1,35 @@
+# 项目配置参数
+
+# 数据配置
+data:
+  # 默认示例为 Td 任务，切换到 D 任务时请同步修改 target_col 与保存目录
+  train_data_path: "../DataSets/Property Dataset/ThermalDecomposition/thermal_decomposition_train_fps.csv"
+  test_data_path: "../DataSets/Property Dataset/ThermalDecomposition/thermal_decomposition_test_fps.csv"
+  smiles_col: "smiles"
+  target_col: "Td"
+  dataset_type: "regression"
+  num_folds: 10
+  seed: 42
+  num_workers: 0
+
+model:
+  depth: 3
+  hidden_size: 300
+  ffn_num_layers: 2
+  dropout: 0.15
+  undirected: False
+  activation: "ReLU"
+  features_generator: ["rdkit_2d_normalized"]
+  features_path: null
+
+training:
+  epochs: 80
+  batch_size: 50
+  warmup_epochs: 5
+  init_lr: 1e-5
+  max_lr: 5e-4
+  final_lr: 1e-5
+  metric: "rmse"
+  save_dir: "Checkpoints/ThermalDecomposition"
+  output_dir: "outputs/ThermalDecomposition"
+  device: "cuda"
